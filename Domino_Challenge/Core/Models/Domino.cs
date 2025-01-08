@@ -1,4 +1,4 @@
-﻿namespace Domino_Challenge;
+﻿namespace Domino_Challenge.Core.Models;
 
 /// <summary>
 /// Represents a domino tile with a left and right value.
@@ -22,16 +22,10 @@ public class Domino
     /// <summary>
     /// Returns a string representation of the domino in the format [Left|Right].
     /// </summary>
-    public override string ToString()
-    {
-        return $"[{Left}|{Right}]";
-    }
+    public override string ToString() => $"[{Left}|{Right}]";
 
     /// <summary>
-    /// Returns a new domino with the left and right values flipped.
+    /// Returns a flipped version of this domino.
     /// </summary>
-    public Domino Flip()
-    {
-        return new Domino(Right, Left);
-    }
+    public Domino Flip() => new Domino(Right, Left);
 }

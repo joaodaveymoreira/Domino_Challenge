@@ -1,4 +1,6 @@
-﻿namespace Domino_Challenge;
+﻿using Domino_Challenge.Core.Models;
+
+namespace Domino_Challenge.Core.Logic;
 
 public static class CircularChains
 {
@@ -42,9 +44,10 @@ public static class CircularChains
         // Mark the current domino as used
         usedDominoes[currentIndex] = true;
 
-        // If the chain length equals the total number of dominoes, check for circularity.
+        // Base Case 1: If the chain contains all the dominoes, check if it forms a valid circular chain
         if (chain.Count == dominoes.Count)
         {
+            // Base Case 2: A valid circular chain must start and end with the same number
             if (chain.First().Left == chain.Last().Right)
             {
                 // Add the chain to results if it's circular.
