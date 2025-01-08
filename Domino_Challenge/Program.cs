@@ -9,12 +9,14 @@ public class Program
         var inputHandler = new DominoInputHandler();
         var dominoes = inputHandler.GetDominoesFromUser();
 
-        DominoDisplay.DisplayDominoes(dominoes);
+        var displayDominoes = new DominoesDisplay();
+        displayDominoes.DisplayDominoes(dominoes);
 
         // Find all possible circular chains.
         var chains = CircularChains.FindAllCircularChains(dominoes);
 
         // Display results.
-        DisplayResults.DisplayResult(chains);
+        var displayResults = new DisplayResults();
+        displayResults.DisplayResult(chains);
     }
 }
