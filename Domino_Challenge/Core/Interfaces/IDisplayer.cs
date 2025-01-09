@@ -5,7 +5,7 @@ namespace Domino_Challenge.Core.Interfaces;
 /// <summary>
 /// Defines functionality for displaying dominoes and results of circular domino chains.
 /// </summary>
-public interface IDominoDisplay
+public interface IDisplayer
 {
     /// <summary>
     /// Displays the list of dominoes.

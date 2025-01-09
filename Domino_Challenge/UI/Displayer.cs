@@ -4,17 +4,19 @@ using Domino_Challenge.Core.Models;
 namespace Domino_Challenge.UI;
 
 /// <summary>
-/// Provides functionality to display results for circular domino chains.
+/// Provides functionality for displaying dominoes and circular chain results.
 /// </summary>
-public class DisplayResults : IDominoDisplay
+public class Displayer : IDisplayer
+
 {
     /// <summary>
-    /// Throws an exception as this method is not intended to be used by this class.
+    /// Displays the list of dominoes.
     /// </summary>
     /// <param name="dominoes">The list of dominoes to display.</param>
     public void DisplayDominoes(List<Domino> dominoes)
     {
-        throw new InvalidOperationException("DisplayDominoes method should not be called on DisplayResults.");
+        Console.WriteLine("Dominoes:");
+        Console.WriteLine(string.Join(" ", dominoes));
     }
 
     /// <summary>

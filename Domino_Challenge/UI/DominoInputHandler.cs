@@ -1,6 +1,7 @@
 ﻿using Domino_Challenge.Core.Initialization;
 using Domino_Challenge.Core.Interfaces;
 using Domino_Challenge.Core.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Domino_Challenge.UI;
 
@@ -9,6 +10,14 @@ namespace Domino_Challenge.UI;
 /// </summary>
 public class DominoInputHandler : IDominoInputHandler
 {
+    private readonly ILogger<DominoInputHandler> _logger;
+
+    // Constructor with ILogger dependency
+    public DominoInputHandler(ILogger<DominoInputHandler> logger)
+    {
+        _logger = logger;
+    }
+
     /// <summary>
     /// Prompts the user to select between predefined dominoes or generating random dominoes.
     /// It ensures valid input and returns the corresponding list of dominoes.
@@ -22,25 +31,32 @@ public class DominoInputHandler : IDominoInputHandler
         // Keep prompting the user until valid input is received
         while (!isValidInput)
         {
-            Console.WriteLine("Enter 1 to use predefined dominoes, 2 to generate random dominoes, or 0 to exit:");
-            var choice = Console.ReadLine()?.Trim();
-
-            switch (choice)
+            try
             {
-                case "1":
-                    dominoes = HandlePredefinedDominoes();
-                    isValidInput = true;
-                    break;
-                case "2":
-                    dominoes = HandleRandomDominoesInput();
-                    isValidInput = true;
-                    break;
-                case "0":
-                    HandleExit();
-                    break;
-                default:
-                    HandleInvalidOption();
-                    break;
+                Console.WriteLine("Enter 1 to use predefined dominoes, 2 to generate random dominoes, or 0 to exit:");
+                var choice = Console.ReadLine()?.Trim();
+
+                switch (choice)
+                {
+                    case "1":
+                        dominoes = HandlePredefinedDominoes();
+                        isValidInput = true;
+                        break;
+                    case "2":
+                        dominoes = HandleRandomDominoesInput();
+                        isValidInput = true;
+                        break;
+                    case "0":
+                        HandleExit();
+                        break;
+                    default:
+                        HandleInvalidOption();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while processing user input.");
             }
         }
 
