@@ -1,4 +1,5 @@
-﻿using Domino_Challenge.Core.Initialization;
+﻿using Domino_Challenge.Core.Helpers;
+using Domino_Challenge.Core.Initialization;
 using Domino_Challenge.Core.Interfaces;
 using Domino_Challenge.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -69,7 +70,7 @@ public class DominoInputHandler : IDominoInputHandler
     /// <returns>A predefined list of dominoes.</returns>
     private List<Domino> HandlePredefinedDominoes()
     {
-        ClearConsole();
+        ConsoleHelper.ClearConsole();
         return InitializeDominoes.InitDominoes();
     }
 
@@ -91,11 +92,11 @@ public class DominoInputHandler : IDominoInputHandler
             {
                 dominoes = InitializeDominoes.GenerateRandomDominoes(count);
                 isValidDominoesInput = true;
-                ClearConsole();
+                ConsoleHelper.ClearConsole();
             }
             else
             {
-                ClearConsole();
+                ConsoleHelper.ClearConsole();
                 Console.WriteLine("Invalid number of dominoes. Please enter a positive integer.\n");
             }
         }
@@ -117,22 +118,8 @@ public class DominoInputHandler : IDominoInputHandler
     /// </summary>
     private void HandleInvalidOption()
     {
-        ClearConsole();
+        ConsoleHelper.ClearConsole();
         Console.WriteLine("Invalid option. Please enter 1, 2, or 0 to exit.\n");
     }
 
-    /// <summary>
-    /// Clears the console screen if input and output are not redirected.
-    /// This method ensures that the console is cleared only when it is not being redirected, 
-    /// preventing exceptions that can occur when redirecting the console input/output streams.
-    /// </summary>
-    private void ClearConsole()
-    {
-        // Check if the console input and output are not redirected (e.g., in a test environment or when piping input/output)
-        if (!Console.IsInputRedirected && !Console.IsOutputRedirected)
-        {
-            // Clear the console screen if the condition is met
-            Console.Clear();
-        }
-    }
 }
