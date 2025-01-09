@@ -1,5 +1,6 @@
 ﻿using Domino_Challenge.Core.Initialization;
 using Domino_Challenge.Core.Models;
+using Domino_Challenge.Tests.Helpers;
 using Domino_Challenge.UI;
 
 namespace Domino_Challenge.Tests;
@@ -32,19 +33,7 @@ public class DisplayerTests
     public void Displayer_DisplaysResultsCorrectly()
     {
         // Arrange
-        var chains = new List<List<Domino>>
-        {
-            new List<Domino>
-            {
-                new Domino(1, 2),
-                new Domino(2, 3)
-            },
-            new List<Domino>
-            {
-                new Domino(4, 5),
-                new Domino(5, 6)
-            }
-        };
+        var chains = TestDataHelper.InitChains(); // Using the helper to provide the test data
 
         // Capture the output using StringWriter
         var stringWriter = new StringWriter();
